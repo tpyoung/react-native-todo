@@ -6,7 +6,7 @@ export class Todo extends Component {
 		super(props);
 		this.state = {
 			todos: [],
-			newTodo: ''
+			newTodo: '' 
 		}
 	}
 
