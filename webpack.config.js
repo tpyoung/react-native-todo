@@ -7,7 +7,12 @@ module.exports = {
   debug: true,
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: [/node_modules/] }
+      { test: /\.js$/, 
+        loader: 'babel', 
+        query: {
+          presets: ['react']
+        },
+        exclude: [/node_modules/] }
     ]
   }
 }
