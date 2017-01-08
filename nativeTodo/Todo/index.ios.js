@@ -1,31 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 
 export default class Todo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [],
+      newTodo: ''
+    }
+  }
+
+  handleChange(e){
+    const {value} = e.target;
+    this.setState({newTodo: value});
+  }
+  handleClick(e){
+    e.preventDefault();
+    const todos = [...this.state.todos, this.input.value];
+    this.input.value = ''
+    this.setState({todos});
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View>
+        <TextInput value={this.state.newTodo} style={{flex: 1}} onChange={this.handleChange.bind(this)} />
+        <TouchableHighlight onPress={this.handleClick.bind(this)}><Text>Add Item</Text></TouchableHighlight>
+        </View>
+          <Text>  
+             {this.state.todos.map(todo => (<Text>{todo}</Text>))}
+          </Text>
       </View>
     );
   }
