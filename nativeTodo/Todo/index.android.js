@@ -1,35 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
+import {Todo} from './src/Todo';
 
-export default class Todo extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+const Main = () => (<Todo />);
+
 
 const styles = StyleSheet.create({
   container: {
@@ -50,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Todo', () => Todo);
+AppRegistry.registerComponent('Main', () => Main);

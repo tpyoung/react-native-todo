@@ -7,41 +7,10 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
+import {Todo} from './src/Todo';
 
-export default class Todo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [],
-      newTodo: ''
-    }
-  }
+const Main = () => (<Todo />);
 
-  handleChange(e){
-    const {value} = e.target;
-    this.setState({newTodo: value});
-  }
-  handleClick(e){
-    e.preventDefault();
-    const todos = [...this.state.todos, this.input.value];
-    this.input.value = ''
-    this.setState({todos});
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-      <View>
-        <TextInput value={this.state.newTodo} style={{flex: 1}} onChange={this.handleChange.bind(this)} />
-        <TouchableHighlight onPress={this.handleClick.bind(this)}><Text>Add Item</Text></TouchableHighlight>
-        </View>
-          <Text>  
-             {this.state.todos.map(todo => (<Text>{todo}</Text>))}
-          </Text>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -62,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Todo', () => Todo);
+AppRegistry.registerComponent('Main', () => Main);
