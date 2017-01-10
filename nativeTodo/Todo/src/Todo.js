@@ -30,13 +30,10 @@ export default class Todo extends Component {
     return (
       <View style={styles.container}>
         <TextInput value={this.state.newTodo} style={{flex: 1}} onChangeText={this.handleChange.bind(this)} />
-        <TouchableHighlight style={{flex: 4}} onPress={this.handlePress.bind(this)}><Text>Add Item</Text></TouchableHighlight>
-
-        <View>
+        <TouchableHighlight style={{flex: 3}} onPress={this.handlePress.bind(this)}><Text>Add Item</Text></TouchableHighlight>
           <Text>  
              {this.state.todos.map((todo, i) => (<Text key={i}>{todo}</Text>))}
           </Text>
-          </View>
       </View>
     );
   }
