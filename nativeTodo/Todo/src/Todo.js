@@ -31,27 +31,31 @@ export class Todo extends Component {
   }
 
   handlePress(){
-    fetch('http://localhost:3000/todos', {
-      method: 'post',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: this.state.newTodo
+    if (this.state.newTodo === '') {
+      return;
+    } else {
+      fetch('http://localhost:3000/todos', {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.state.newTodo
+        })
       })
-    })
-    .then(res => res.json())
-    .then(todo => {const todos = [this.state.newTodo, ...this.state.todos];
-      this.setState({todos, newTodo: ''});
-    })
-    
-    fetch('http://localhost:3000/todos', { 
-      headers: {'Accept': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(todos => this.setState({todos}))
-  }
+      .then(res => res.json())
+      .then(todo => {const todos = [this.state.newTodo, ...this.state.todos];
+        this.setState({todos, newTodo: ''});
+      })
+      
+      fetch('http://localhost:3000/todos', { 
+        headers: {'Accept': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(todos => this.setState({todos}))
+    }
+  };
 
   render() {
     return (

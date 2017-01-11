@@ -1,32 +1,16 @@
 {
   "todos": [
     {
-      "name": "Kick",
+      "name": "Run",
       "id": 1
     },
     {
-      "name": "Run",
+      "name": "Skip",
       "id": 2
     },
     {
       "name": "Jump",
       "id": 3
-    },
-    {
-      "name": "Spin",
-      "id": 4
-    },
-    {
-      "name": "Twist",
-      "id": 5
-    },
-    {
-      "name": "Walk",
-      "id": 6
-    },
-    {
-      "name": "Asdfghjkjhgfd",
-      "id": 7
     }
   ]
 }
