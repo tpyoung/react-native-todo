@@ -8,7 +8,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-export default class Todo extends Component {
+export class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,8 +22,19 @@ export default class Todo extends Component {
   }
 
   handlePress(){
-    const todos = [...this.state.todos, this.state.newTodo];
+    fetch('http://localhost:3000/todos', {
+      method: 'post',
+      body: JSON.stringify({
+        name: this.state.newTodo
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {const todos = [...this.state.todos, this.state.newTodo]
     this.setState({todos, newTodo: ''});
+    })
   }
 
   render() {
@@ -39,7 +50,7 @@ export default class Todo extends Component {
           </TouchableHighlight>
         </View>
         <View style={styles.listContainer}> 
-          {this.state.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text > {todo} </Text></View>))}
+          {this.state.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text> {todo.name} </Text></View>))}
         </View>
       </View>
     );
@@ -50,8 +61,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
-    // alignItems: 'center',
-    
   },
   form: {
     flexDirection: 'row',
