@@ -29,11 +29,18 @@ export default class Todo extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput value={this.state.newTodo} style={{flex: 1}} onChangeText={this.handleChange.bind(this)} />
-        <TouchableHighlight style={{flex: 3}} onPress={this.handlePress.bind(this)}><Text>Add Item</Text></TouchableHighlight>
-          <Text>  
-             {this.state.todos.map((todo, i) => (<Text key={i}>{todo}</Text>))}
-          </Text>
+        <View style={styles.form}>
+          <TextInput 
+            style = {styles.TextInput}
+            value={this.state.newTodo} 
+            onChangeText={this.handleChange.bind(this)} />
+          <TouchableHighlight style={styles.TouchableHighlight} onPress={this.handlePress.bind(this)}>
+              <Text>Add Item</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.listContainer}> 
+          {this.state.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text > {todo} </Text></View>))}
+        </View>
       </View>
     );
   }
@@ -42,20 +49,43 @@ export default class Todo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    paddingTop: 50,
+    // alignItems: 'center',
+    
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  form: {
+    flexDirection: 'row',
+    padding: 5,
+    alignItems: 'flex-end',
+    borderBottomWidth: 1,
+    borderColor: '#4B555F',
+    paddingBottom: 15
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  TextInput: {
+    flex: 4,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#00DCAA'
   },
+
+  TouchableHighlight: {
+    marginLeft: 3,
+    borderColor: '#00DCAA',
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 10
+
+  },
+  listContainer: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  listItem: {
+    padding: 5,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1
+  }
+  
 });
 
 AppRegistry.registerComponent('Todo', () => Todo);
