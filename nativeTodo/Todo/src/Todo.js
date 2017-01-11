@@ -32,7 +32,7 @@ export class Todo extends Component {
 
   handlePress(){
     if (this.state.newTodo === '') {
-      return;
+      return ;
     } else {
       fetch('http://localhost:3000/todos', {
         method: 'post',
@@ -47,15 +47,12 @@ export class Todo extends Component {
       .then(todo => {const todos = [this.state.newTodo, ...this.state.todos];
         this.setState({todos, newTodo: ''});
       })
-      
-      fetch('http://localhost:3000/todos', { 
-        headers: {'Accept': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(todos => this.setState({todos}))
-    }
-  };
+      .then(fetch('http://localhost:3000/todos', { 
+        headers: {'Accept': 'application/json'}})
+        .then(res => res.json())
+        .then(todos => this.setState({todos})))
+  }
+}
 
   render() {
     return (

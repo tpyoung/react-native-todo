@@ -1,16 +1,4 @@
 {
   "todos": [
-    {
-      "name": "Run",
-      "id": 1
-    },
-    {
-      "name": "Skip",
-      "id": 2
-    },
-    {
-      "name": "Jump",
-      "id": 3
-    }
   ]
 }
