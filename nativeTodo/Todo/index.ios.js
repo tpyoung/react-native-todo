@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-// import {List} from './src/List';
 import {Todo} from './src/Todo';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
 
-const Main = () => (<Todo />);
+const Main = () => (
+	<Provider store={store} ><Todo /></Provider>
+);
 
 AppRegistry.registerComponent('Main', () => Main);

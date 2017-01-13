@@ -31,9 +31,9 @@ export class Todo extends Component {
   }
 
   handlePress(){
-    if (this.state.newTodo === '') {
-      return ;
-    } else {
+    if (this.state.newTodo === '' || this.state.newTodo.substring(0,1) === ' ') {
+      return;
+    } 
       fetch('http://localhost:3000/todos', {
         method: 'post',
         headers: {
@@ -52,7 +52,6 @@ export class Todo extends Component {
         .then(res => res.json())
         .then(todos => this.setState({todos})))
   }
-}
 
   render() {
     return (
