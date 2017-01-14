@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
+import { connect } from 'react-redux';
 
 export class Todo extends Component {
   constructor(props) {
