@@ -58,7 +58,10 @@ export class Todo extends Component {
   render() {
     return (
       <View style={styles.container}>
-       <TodoForm />
+       <TodoForm 
+          handlePress={this.handlePress.bind(this)} 
+          handleChange={this.handleChange.bind(this)} 
+          value={this.state.newTodo}/>
         <View style={styles.listContainer}> 
           {this.state.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text style={styles.listItemText}> {todo.name} </Text></View>))}
         </View>

@@ -8,13 +8,13 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-export const TodoForm = () => (
+export const TodoForm = (props) => (
 	<View style={styles.form}>
 	  <TextInput 
 	    style = {styles.TextInput}
-	    value={this.state.newTodo} 
-	    onChangeText={this.handleChange.bind(this)} />
-	  <TouchableHighlight style={styles.TouchableHighlight} onPress={this.handlePress.bind(this)}>
+	    value={props.value} 
+	    onChangeText={props.handleChange} />
+	  <TouchableHighlight style={styles.TouchableHighlight} onPress={props.handlePress}>
 	      <Text>Add Item</Text>
 	  </TouchableHighlight>
 	</View>
