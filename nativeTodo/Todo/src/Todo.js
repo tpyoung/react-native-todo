@@ -10,17 +10,10 @@ import {
 import { connect }  from 'react-redux';
 import { TodoForm } from './TodoForm'
 
-const mapActionsToProps = (dispatch) => ({
-  createTodo(todo) {
-    dispatch({type: CREATE_TODO, payload: todo})
-  }
-});
-
-export class Todo extends Component {
-  constructor(props) {
-    super(props);
+export class _Todo extends Component {
+  constructor() {
+    super();
     this.state = {
-      todos: [],
       newTodo: ''
     }
   }
@@ -39,26 +32,29 @@ export class Todo extends Component {
   }
 
   handlePress(){
-    if (this.state.newTodo === '' || this.state.newTodo.substring(0,1) === ' ') {
-      return;
-    } 
-      fetch('http://localhost:3000/todos', {
-        method: 'post',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: this.state.newTodo
-        })
-      })
-      .then(res => res.json())
-      .then(todo => {const todos = [this.state.newTodo, ...this.state.todos];
-        this.setState({todos, newTodo: ''});
-      })
-      .then(fetch('http://localhost:3000/todos', { 
-        headers: {'Accept': 'application/json'}})
-        .then(res => res.json())
-        .then(todos => this.setState({todos})))
+    this.props.createTodo(this.state.newTodo);
+    this.setState({newTodo: ''})
+    // FORMER CODE LEFT TO REVISIT
+    // if (this.state.newTodo === '' || this.state.newTodo.substring(0,1) === ' ') {
+    //   return;
+    // } 
+    //   fetch('http://localhost:3000/todos', {
+    //     method: 'post',
+    //     headers: {
+    //       'content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //       name: this.state.newTodo
+    //     })
+    //   })
+    //   .then(res => res.json())
+    //   .then(todo => {const todos = [this.state.newTodo, ...this.state.todos];
+    //     this.setState({todos, newTodo: ''});
+    //   })
+    //   .then(fetch('http://localhost:3000/todos', { 
+    //     headers: {'Accept': 'application/json'}})
+    //     .then(res => res.json())
+    //     .then(todos => this.setState({todos})))
   }
 
   render() {
@@ -69,12 +65,25 @@ export class Todo extends Component {
           handleChange={this.handleChange.bind(this)} 
           value={this.state.newTodo}/>
         <View style={styles.listContainer}> 
-          {this.state.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text style={styles.listItemText}> {todo.name} </Text></View>))}
+          {this.props.todos.map((todo, i) => (<View style={styles.listItem} key={i} ><Text style={styles.listItemText}> {todo.name} </Text></View>))}
         </View>
       </View>
     );
   }
 }
+
+
+const mapActionsToProps = (dispatch) => ({
+  createTodo(todo) {
+    dispatch({type: CREATE_TODO, payload: todo})
+  }
+});
+
+const mapStateToProps = (state) => ({
+  todos: state.todos
+});
+
+export const Todo = connect(null, mapActionsToProps)(_Todo);
 
 const styles = StyleSheet.create({
   container: {
