@@ -10,6 +10,12 @@ import {
 import { connect }  from 'react-redux';
 import { TodoForm } from './TodoForm'
 
+const mapActionsToProps = (dispatch) => ({
+  createTodo(todo) {
+    dispatch({type: CREATE_TODO, payload: todo})
+  }
+});
+
 export class Todo extends Component {
   constructor(props) {
     super(props);

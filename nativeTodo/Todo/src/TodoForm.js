@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
+import { connect }  from 'react-redux';
 
 export const TodoForm = (props) => (
 	<View style={styles.form}>
